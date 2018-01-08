@@ -1,6 +1,7 @@
 #!/bin/bash
 
 CONFIG_SRC_DIR=~/Documents/configuration/src
+GIT_RECIPE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 if [ ! -d $CONFIG_SRC_DIR/.gitglobal ]; then
     git clone https://github.com/CaptainQuirk/.gitglobal.git $CONFIG_SRC_DIR/.gitglobal
@@ -24,6 +25,10 @@ cd $CONFIG_SRC_DIR/.tig
 git pull
 cd -
 
+mkdir -p $HOME/Pictures/configuration
+cp --update $GIT_RECIPE_DIR/files/git.png $HOME/.local/share/icons/
+
+cp --update $GIT_RECIPE_DIR/files/tig.desktop $HOME/.local/share/applications/tig.desktop
 
 sudo apt-get install git-flow
 
