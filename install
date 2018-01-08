@@ -8,6 +8,10 @@ if [ ! -d $CONFIG_SRC_DIR/.gitglobal ]; then
     ln -s $CONFIG_SRC_DIR/.gitglobal/gitignore ~/.gitignore
 fi
 
+cd $CONFIG_SRC_DIR/.gitglobal
+git pull
+cd -
+
 brew install git-flow
 brew install tig
 
@@ -15,6 +19,11 @@ if [ ! -d $CONFIG_SRC_DIR/.tig ]; then
     git clone https://github.com/CaptainQuirk/.tig.git $CONFIG_SRC_DIR/.tig
     ln -s $CONFIG_SRC_DIR/.tig/tigrc ~/.tigrc
 fi
+
+cd $CONFIG_SRC_DIR/.tig
+git pull
+cd -
+
 
 sudo apt-get install git-flow
 
