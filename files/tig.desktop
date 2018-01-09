@@ -4,6 +4,5 @@ Type=Application
 Version=1.0
 Name=tig
 Comment=Terminal wrapper around tig
-Exec=tig
+Exec=gnome-terminal --geometry=700x700 --hide-menubar -e tig
 Icon=/home/leonard/.local/share/icons/git.png
-Terminal=true
