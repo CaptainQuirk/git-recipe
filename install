@@ -14,7 +14,12 @@ git pull
 cd -
 
 brew install git-flow
-brew install tig
+
+if ! command -v tig >/dev/null 2>&1; then
+    brew install tig
+else
+    brew upgrade tig
+fi
 
 if [ ! -d $CONFIG_SRC_DIR/.tig ]; then
     git clone https://github.com/CaptainQuirk/.tig.git $CONFIG_SRC_DIR/.tig
