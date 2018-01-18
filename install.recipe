@@ -1,0 +1,58 @@
+git "Retrieving global git configuration"; then
+    repository "https://github.com/CaptainQuirk/.gitglobal.git"
+    destination "$CONFIG_SRC_DIR/.gitglobal"
+    enable-submodules true
+done
+
+link "Symlinking global gitconfig"; then
+    target "$CONFIG_SRC_DIR/.gitglobal/gitconfig"
+    to "$HOME/.gitconfig"
+    force true
+done
+
+link "Symlinking global gitignore"; then
+    target "$CONFIG_SRC_DIR/.gitglobal/gitignore"
+    to "$HOME/.gitignore"
+    force true
+done
+
+brew "Installing git flow"; then
+    package "git-flow"
+done
+
+brew "Installing tig viewer"; then
+    package "tig"
+done
+
+git "Retrieving tig configuration"; then
+    repository "https://github.com/CaptainQuirk/.tig.git"
+    destination $CONFIG_SRC_DIR/.tig
+    enable-submodules true
+done
+
+link "Symlinking tigrc configuration file"; then
+    target "$CONFIG_SRC_DIR/.tig/tigrc"
+    to "$HOME/.tigrc"
+    force true
+done
+
+file "Copying git icon for tig"; then
+    source "$RECIPE_DIR/files/git.png"
+    path "$HOME/.local/share/icons/git.png"
+    update true
+done
+
+file "Copying .desktop file for tig"; then
+    source "$RECIPE_DIR/files/tig.desktop"
+    path "$HOME/.local/share/applications/tig.desktop"
+    update true
+done
+
+brew "Installing git-extras"; then
+    package "git-extras"
+done
+
+brew "Installing git-cal"; then
+    package "git-cal"
+done
+

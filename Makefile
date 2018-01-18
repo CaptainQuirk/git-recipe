@@ -1,4 +1,6 @@
+build:
+	@shef-compile install.recipe > build/install
 install:
-	/bin/bash install
+	@/bin/bash build/install
 
-.PHONY: install
+.PHONY: install build
