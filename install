@@ -35,8 +35,9 @@ cp --update $GIT_RECIPE_DIR/files/git.png $HOME/.local/share/icons/
 
 cp --update $GIT_RECIPE_DIR/files/tig.desktop $HOME/.local/share/applications/tig.desktop
 
+sudo cp --update $GIT_RECIPE_DIR/files/tig-wrapper /usr/local/bin/tig-wrapper
+
 sudo apt-get install git-flow
 
 brew install git-extras
 brew install git-cal
-
