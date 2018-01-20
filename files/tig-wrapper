@@ -1,0 +1,46 @@
+#!/bin/bash
+
+LOG_FILE=$HOME/.cache/tig-wrapper/tig-wrapper.log
+DIRECTORY=
+GIT_DIR=
+
+if [ ! -f $LOG_FILE ]; then
+    mkdir -p $HOME/.cache/tig-wrapper
+    touch $LOG_FILE
+fi
+
+if [ -f $1 ]; then
+    echo "\$1 argument is a file" >> $LOG_FILE 2>&1
+    DIRECTORY=$(dirname $1)
+    echo "Directory is $DIRECTORY" >> $LOG_FILE 2>&1
+    cd $DIRECTORY >> $LOG_FILE 2>&1
+    GIT_DIR=$(git rev-parse --show-toplevel)
+
+    if [ $? != 0 ]; then
+        echo "Could not find root git dir for directory « $1 »" >> $LOG_FILE 2>&1
+        exit 1
+    fi
+
+    echo "root git dir found in ${GIT_DIR}" >> $LOG_FILE 2>&1
+
+elif [ -d $1 ]; then
+    echo "Is a directory" >> $LOG_FILE 2>&1
+    if [ -d $1/.git -o -f $1/.git ]; then
+        GIT_DIR=$1
+        echo "root git dir found in ${GIT_DIR}" >> $LOG_FILE 2>&1
+    else
+        echo "Does not contain a .git dir or file" >> $LOG_FILE 2>&1
+        GIT_DIR=$(git rev-parse --show-toplevel)
+        if [ $? != 0 ]; then
+            echo "Could not find root git dir for directory « $1 »" >> $LOG_FILE 2>&1
+            exit 1
+        fi
+    fi
+else
+    echo "Is a something else" >> $LOG_FILE 2>&1
+fi
+
+CMD="gnome-terminal --working-directory=${GIT_DIR} --command "tig" --geometry 700x700 --hide-menubar"
+echo "Issuing command ${CMD}" >> $LOG_FILE 2>&1
+
+$($CMD >> $LOG_FILE 2>&1)
