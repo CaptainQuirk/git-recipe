@@ -1,58 +1,57 @@
-git "Retrieving global git configuration"; then
+git "Retrieving global git configuration"; do
     repository "https://github.com/CaptainQuirk/.gitglobal.git"
     destination "$CONFIG_SRC_DIR/.gitglobal"
     enable-submodules true
 done
 
-link "Symlinking global gitconfig"; then
+link "Symlinking global gitconfig"; do
     target "$CONFIG_SRC_DIR/.gitglobal/gitconfig"
     to "$HOME/.gitconfig"
     force true
 done
 
-link "Symlinking global gitignore"; then
+link "Symlinking global gitignore"; do
     target "$CONFIG_SRC_DIR/.gitglobal/gitignore"
     to "$HOME/.gitignore"
     force true
 done
 
-brew "Installing git flow"; then
+brew "Installing git flow"; do
     package "git-flow"
 done
 
-brew "Installing tig viewer"; then
+brew "Installing tig viewer"; do
     package "tig"
 done
 
-git "Retrieving tig configuration"; then
+git "Retrieving tig configuration"; do
     repository "https://github.com/CaptainQuirk/.tig.git"
-    destination $CONFIG_SRC_DIR/.tig
+    destination "$CONFIG_SRC_DIR/.tig"
     enable-submodules true
 done
 
-link "Symlinking tigrc configuration file"; then
+link "Symlinking tigrc configuration file"; do
     target "$CONFIG_SRC_DIR/.tig/tigrc"
     to "$HOME/.tigrc"
     force true
 done
 
-file "Copying git icon for tig"; then
+file "Copying git icon for tig"; do
     source "$RECIPE_DIR/files/git.png"
     path "$HOME/.local/share/icons/git.png"
     update true
 done
 
-file "Copying .desktop file for tig"; then
+file "Copying .desktop file for tig"; do
     source "$RECIPE_DIR/files/tig.desktop"
     path "$HOME/.local/share/applications/tig.desktop"
     update true
 done
 
-brew "Installing git-extras"; then
+brew "Installing git-extras"; do
     package "git-extras"
 done
 
-brew "Installing git-cal"; then
+brew "Installing git-cal"; do
     package "git-cal"
 done
-
