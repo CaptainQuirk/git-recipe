@@ -41,3 +41,5 @@ sudo apt-get install git-flow
 
 brew install git-extras
 brew install git-cal
+
+npm install --global git-open
