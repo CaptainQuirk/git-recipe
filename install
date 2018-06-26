@@ -13,12 +13,10 @@ cd $CONFIG_SRC_DIR/.gitglobal
 git pull
 cd -
 
-brew install git-flow
-
 if ! command -v tig >/dev/null 2>&1; then
-    brew install tig
+    shef brew tig
 else
-    brew upgrade tig
+    shef brew tig
 fi
 
 if [ ! -d $CONFIG_SRC_DIR/.tig ]; then
@@ -37,9 +35,13 @@ cp --update $GIT_RECIPE_DIR/files/tig.desktop $HOME/.local/share/applications/ti
 
 sudo cp --update $GIT_RECIPE_DIR/files/tig-wrapper /usr/local/bin/tig-wrapper
 
-sudo apt-get install git-flow
+if ! command -v git flow> /dev/null 2>&1; then
+    sudo apt-get install git-flow
+fi
 
-brew install git-extras
-brew install git-cal
+shef brew git-extras
+shef brew git-cal
 
-npm install --global git-open
+if ! command -v git-open > /dev/null 2>&1; then
+    npm install --global git-open
+fi
