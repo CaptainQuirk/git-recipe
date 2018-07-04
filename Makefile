@@ -1,5 +1,5 @@
 build:
-	@shef-compile install.recipe > build/install
+	@shef build install.recipe build/install
 install:
 	@/bin/bash build/install
 install_legacy:
