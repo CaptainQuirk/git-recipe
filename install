@@ -9,9 +9,9 @@ if [ ! -d $CONFIG_SRC_DIR/.gitglobal ]; then
     ln -s $CONFIG_SRC_DIR/.gitglobal/gitignore ~/.gitignore
 fi
 
-cd $CONFIG_SRC_DIR/.gitglobal
+cd "$CONFIG_SRC_DIR/.gitglobal" || exit 1
 git pull
-cd -
+cd - || exit 1
 
 if ! command -v tig >/dev/null 2>&1; then
     shef brew tig
@@ -24,20 +24,18 @@ if [ ! -d $CONFIG_SRC_DIR/.tig ]; then
     ln -s $CONFIG_SRC_DIR/.tig/tigrc ~/.tigrc
 fi
 
-cd $CONFIG_SRC_DIR/.tig
+cd "$CONFIG_SRC_DIR/.tig" || exit 1
 git pull
-cd -
+cd - || exit 1
 
-mkdir -p $HOME/Pictures/configuration
-cp --update $GIT_RECIPE_DIR/files/git.png $HOME/.local/share/icons/
+mkdir -p "$HOME/Pictures/configuration"
+cp --update "$GIT_RECIPE_DIR/files/git.png" "$HOME/.local/share/icons/"
 
-cp --update $GIT_RECIPE_DIR/files/tig.desktop $HOME/.local/share/applications/tig.desktop
+cp --update "$GIT_RECIPE_DIR/files/tig.desktop" "$HOME/.local/share/applications/tig.desktop"
 
-sudo cp --update $GIT_RECIPE_DIR/files/tig-wrapper /usr/local/bin/tig-wrapper
+sudo cp --update "$GIT_RECIPE_DIR/files/tig-wrapper" /usr/local/bin/tig-wrapper
 
-if ! command -v git flow> /dev/null 2>&1; then
-    sudo apt-get install git-flow
-fi
+shef apt git-flow
 
 shef brew git-extras
 shef brew git-cal
