@@ -16,7 +16,7 @@ link "Symlinking global gitignore"; do
     force true
 done
 
-brew "Installing git flow"; do
+apt "Installing git flow"; do
     package "git-flow"
 done
 
@@ -34,6 +34,13 @@ link "Symlinking tigrc configuration file"; do
     target "$CONFIG_SRC_DIR/.tig/tigrc"
     to "$HOME/.tigrc"
     force true
+done
+
+file "Copying tig wrapper script"; do
+    source "$RECIPE_DIR/files/tig-wrapper"
+    path "/usr/local/bin/tig-wrapper"
+    update true
+    sudo true
 done
 
 file "Copying git icon for tig"; do
@@ -54,4 +61,8 @@ done
 
 brew "Installing git-cal"; do
     package "git-cal"
+done
+
+npm "Installing git-open"; do
+    package "git-open"
 done
