@@ -55,6 +55,13 @@ file "Copying .desktop file for tig"; do
     update true
 done
 
+file "Copying tig-wrapper to PATH"; do
+    source "$RECIPE_DIR/files/tig-wrapper"
+    path "/usr/local/bin/tig-wrapper"
+    update true
+    sudo true
+done
+
 brew "Installing git-extras"; do
     package "git-extras"
 done
