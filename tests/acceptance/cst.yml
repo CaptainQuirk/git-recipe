@@ -1,0 +1,33 @@
+schemaVersion: 2.0.0
+commandTests:
+  - name: 'Installs git flow'
+    command: 'git'
+    args: ['flow', 'version']
+    expectedOutput: ['0.4']
+  - name: 'Installs tig'
+    command: 'which'
+    args: ['tig']
+  - name: 'Creates a wrapper for tig'
+    command: 'which'
+    args: ['tig-wrapper']
+  - name: 'Installs git extras'
+    command: 'which'
+    args: ['git-delete-submodule']
+  - name: 'Installs git cal'
+    command: 'which'
+    args: ['git-cal']
+  - name: 'Installs git open'
+    command: 'which'
+    args: ['git-open']
+
+fileExistenceTests:
+  - name: 'Creates the global git config file'
+    path: /home/linuxbrew/.gitconfig
+    shouldExist: true
+  - name: 'Creates the global git ignore file'
+    path: /home/linuxbrew/.gitignore
+    shouldExist: true
+  - name: 'Creates the global tig configuration'
+    path: /home/linuxbrew/.tigrc
+    shouldExist: true
+

@@ -1,4 +1,7 @@
 {
   "name": "captainquirk/git-recipe",
-  "description": "Import custom git configuration, installs tig, git-flow, git-extras and Cie"
+  "description": "Import custom git configuration, installs tig, git-flow, git-extras and Cie",
+  "dependencies": [
+      "captainquirk/main-recipe"
+  ]
 }

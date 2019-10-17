@@ -16,7 +16,7 @@ link "Symlinking global gitignore"; do
     force true
 done
 
-apt "Installing git flow"; do
+brew "Installing git flow"; do
     package "git-flow"
 done
 
